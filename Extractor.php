@@ -6,7 +6,7 @@ class Extractor
 {
     private $startTag = '{';
     private $endTag = '}';
-    private $smartyCommand = 't';
+    private $smartyCommand = 'trans';
     private $smartyExtension = 'tpl';
 
     /**
