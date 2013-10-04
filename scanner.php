@@ -1,26 +1,25 @@
 #!/usr/bin/env php
 <?php
+namespace SmartyTranslate;
 
-function __autoload($class_name)
-{
-    include $class_name . '.php';
-}
+ini_set('display_errors', 'off');
+
+use SmartyTranslate\Extractor;
+use SmartyTranslate\GettextCli;
+use SmartyTranslate\GettextGenerator;
+
+include "Vendor/autoload.php";
 
 $extractor = new Extractor();
-$potGenerator = new PotGenerator();
+$gtCli = new GettextCli($_SERVER['argv']);
+$gtGenerator = new GettextGenerator();
 
-for ($ac = 1; $ac < $_SERVER['argc']; $ac++) {
-    $extractor->extractFile($_SERVER['argv'][$ac]);
+if (php_sapi_name() === 'cli') {
+    foreach ($gtCli->getFiles() as $file) {
+        $extractor->extractFile($file);
+    }
+} else {
+    die("You should run scanner in cli mode.");
 }
 
-$potGenerator->setPotHeader(
-    array(
-        'Project-Id-Version' => 'Neoscriber',
-        'Report-Msgid-Bugs-To' => 'm.abdolirad@gmail.com',
-        'Last-Translator' => 'Mohammad Abdoli Rad <m.abdolirad@gmail.com>',
-        'Language-Team' => 'Persian',
-        'Language' => 'Persian',
-    )
-);
-
-$potGenerator->generate();
+echo $gtGenerator->generate();
