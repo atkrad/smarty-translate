@@ -1,7 +1,5 @@
 #!/usr/bin/env php
 <?php
-namespace SmartyTranslate;
-
 ini_set('display_errors', 'off');
 
 use SmartyTranslate\Extractor;
@@ -19,7 +17,7 @@ if (php_sapi_name() === 'cli') {
         $extractor->extractFile($file);
     }
 } else {
-    die("You should run scanner in cli mode.");
+    die("<br><b>You should run scanner.php in cli mode.</b>");
 }
 
 echo $gtGenerator->generate();
