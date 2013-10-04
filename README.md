@@ -1,4 +1,2 @@
-smarty-translate
+Smarty Gettext Translate
 ================
-
-Smarty Translate
