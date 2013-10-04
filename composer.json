@@ -1,0 +1,65 @@
+{
+    "name": "atkrad/smarty-translate",
+    "description": "Smarty Translate",
+    "keywords": ["smarty", "gettext", "translate"],
+    "version": "0.1.0-alpha.1",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Mohammad Abdoli Rad",
+            "email": "m.abdolirad@gmail.com",
+            "homepage": "http://magzilla.org",
+            "role": "Author"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/atkrad/smarty-translate"
+    },
+    "require": {
+        "php": ">=5.2.0"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=3.7",
+        "smarty-v2": "2.6.28",
+        "smarty-v3": "3.1.15"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty-v2",
+                "version": "2.6.28",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-2.6.28.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "classmap": ["libs/"]
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty-v3",
+                "version": "3.1.15",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-3.1.15.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "classmap": ["libs/"]
+                }
+            }
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "SmartyTranslate": "src/"
+        }
+    },
+    "config": {
+        "vendor-dir": "Vendor/"
+    }
+}
