@@ -159,13 +159,7 @@ MSG;
             $sString[] = "msgid \"\"";
 
             foreach ($nArr as $stringArr) {
-                if (end($nArr) != $stringArr) {
-                    $sString[] = "\"{$stringArr}\\n\"";
-                } elseif (end($nArr) == $stringArr && strrpos($this->filterString($string), '\n')) {
-                    $sString[] = "\"{$stringArr}\"";
-                } else {
-                    $sString[] = "\"{$stringArr}\"";
-                }
+                $sString[] = "\"{$stringArr}\"";
             }
         } else {
             $sString[] = "msgid \"{$filterString}\"";
@@ -209,7 +203,7 @@ MSG;
     public function setPlural($string, $pluralString, $filePath, $lineNum)
     {
         $pString = array();
-        $pString[] = "msgid \"{$this->filterString($string)}\"";
+        $pString[] = $this->getMessageId($string);
         $pString[] = "msgid_plural \"{$this->filterString($pluralString)}\"";
         $pString[] = "msgstr[0] \"\"";
         $pString[] = "msgstr[1] \"\"";
@@ -263,6 +257,11 @@ MSG;
         return "#, {$flag}";
     }
 
+    /**
+     * Get zero translated
+     *
+     * @return string
+     */
     protected function getZeroTranslated()
     {
         $output = [];
@@ -300,6 +299,7 @@ MSG;
     protected function filterString($string)
     {
         $string = str_replace('"', '\"', $string);
+        $string = str_replace("\n", '\n', $string);
         $string = str_replace("\r\n", '\n', $string);
         return $string;
     }
